@@ -7,7 +7,6 @@ gem 'pg', '0.17.1'
 
 gem 'devise', '3.2.3'
 
-
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
 gem 'kaminari', '0.15.1'
@@ -16,8 +15,11 @@ gem 'coffee-rails', '~> 4.0.0'
 gem 'jquery-rails'
 gem 'turbolinks', '2.2.1'
 gem 'jbuilder', '~> 1.2'
-
 gem 'slim-rails', '2.1.5'
+
+gem 'therubyracer'
+gem 'less-rails' #Sprockets (what Rails 3.1 uses for its asset pipeline) supports LESS
+gem 'twitter-bootstrap-rails', '2.2.8'
 
 group :staging, :production do
   gem 'rails_12factor'

@@ -1,0 +1,37 @@
+doctype html
+html
+  head
+    title Bugzilla
+    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
+    /![if lt IE 9]><script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script><![endif]
+    = csrf_meta_tags
+  body
+    .navbar.navbar-fixed-top.navbar-inverse
+      .navbar-inner
+        .container
+          a.btn.btn-navbar data-target=".nav-collapse" data-toggle="collapse"
+            span.icon-bar
+            span.icon-bar
+            span.icon-bar
+
+          = link_to 'Bugzilla', root_path, class: 'brand'
+
+          - if user_signed_in?
+            .nav-collapse
+              ul.nav
+                li= link_to 'Projects'
+                li= link_to 'Stories'
+                li= link_to 'Tasks'
+                li= link_to 'Comments'
+            ul.nav.pull-right
+              li= link_to 'Sign out', destroy_user_session_path, method: :delete
+          - else
+              ul.nav.pull-right
+                li= link_to 'Sign up / Sign in'
+    .container
+      .well
+        .row
+          .span12= yield
+      .footer
+        | Copyright (c) #{Bugzilla::Application::COPYRIGHT_YEAR} #{Bugzilla::Application::COPYRIGHT_AUTHOR}
+    = javascript_include_tag 'application', 'data-turbolinks-track' => true
