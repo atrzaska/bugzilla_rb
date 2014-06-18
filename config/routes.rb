@@ -7,8 +7,8 @@ Rails.application.routes.draw do
 
   # match ':controller(/:action(/:id))', :via => :get
   # resources :projects, only: [:index]
-  resources :projects do
-    resources :stories
+  resources :projects, only: [:index] do
+    resources :stories, only: [:index]
   end
-  resources :comments
+  resources :comments, only: [:index]
 end
