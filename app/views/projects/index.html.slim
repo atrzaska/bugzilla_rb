@@ -1,1 +1,14 @@
-h1 hello world!
+h1 Dashboard
+= link_to 'Add project', new_project_path, class: 'btn btn-primary btn-large'
+br
+br
+table.row.table.striped.table-hover.span12
+  tr
+    th ID
+    th Actions
+  - @projects.each do |project|
+    tr
+      td.project.id
+        = project.id
+      td.project.actions
+        = link_to

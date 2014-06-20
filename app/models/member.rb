@@ -1,3 +1,4 @@
 class Member < ActiveRecord::Base
-  has_many :projects
+  belongs_to :project
+  belongs_to :user
 end
