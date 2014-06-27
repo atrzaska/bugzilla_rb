@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :posts
+
   # match ':controller(/:action(/:id))', :via => :get
 
   authenticated :user do
@@ -10,8 +12,12 @@ Rails.application.routes.draw do
   # devise_for :users
   devise_for :users
 
-  resources :projects, only: [:index, :new] do
-    resources :stories, only: [:index, :new]
+  get 'members/confirm/:token' => 'members#confirm', as: 'confirm_member'
+
+  resources :projects do
+    resources :members
+    resources :stories do
+      get :current, :backlog, :icebox, :done, on: :collection
+    end
   end
-  resources :comments, only: [:index, :new]
 end

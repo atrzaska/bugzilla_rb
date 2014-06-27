@@ -1,0 +1,21 @@
+table.table.striped.table-hover
+  thead
+    tr
+      th Name
+      th Email
+      th Owner
+      th Confirmed
+      th Actions
+  tbody
+    - @members.each do |member|
+      tr
+        td.member.name
+          = link_to member.name, edit_project_member_path(member.project, member)
+        td.member.email
+          = member.email
+        td.member.owner
+          = member.owner
+        td.member.confirmed
+          = member.confirmed
+        td.member.actions
+          = link_to 'x', project_member_path(member.project, member), method: :delete, class: 'btn btn-danger', data: { confirm: "Are you sure to delete #{member.name}?" }

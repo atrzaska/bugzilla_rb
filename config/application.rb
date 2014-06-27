@@ -10,5 +10,6 @@ module Bugzilla
 
     COPYRIGHT_YEAR = '2014'
     COPYRIGHT_AUTHOR = 'Andrzej Trzaska'
+    ITEMS_PER_PAGE = 8
   end
 end

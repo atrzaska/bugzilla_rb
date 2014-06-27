@@ -18,15 +18,9 @@ html
 
           - if user_signed_in?
             .nav-collapse
-              ul.nav
-                li= link_to 'Projects'
-                li= link_to 'Stories'
-                li= link_to 'Tasks'
-                li= link_to 'Comments'
-            ul.nav.pull-right
-              li= link_to 'Projects', projects_path
-              li= link_to 'Profile', edit_user_registration_path
-              li= link_to 'Sign out', destroy_user_session_path, method: :delete
+              ul.nav.pull-right
+                li= link_to 'Profile', edit_user_registration_path
+                li= link_to 'Sign out', destroy_user_session_path, method: :delete
           - else
               ul.nav.pull-right
                 li= link_to 'Sign up / Sign in'
@@ -40,9 +34,7 @@ html
         .alert
           button.close data-dismiss="alert" type="button"  &times;
           = flash[:notice]
-      .well
-        .row
-          .span12= yield
+      .row= yield
       .footer
         | Copyright (c) #{Bugzilla::Application::COPYRIGHT_YEAR} #{Bugzilla::Application::COPYRIGHT_AUTHOR}
     = javascript_include_tag 'application', 'data-turbolinks-track' => true

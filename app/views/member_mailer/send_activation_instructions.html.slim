@@ -1,0 +1,2 @@
+p Dear #{@member.name}, you are invited to #{@member.project.name} project, click the link to activate invitation. If you didn't request this, please ignore this email.
+= link_to 'confirm', confirm_member_url(token: @member.token)

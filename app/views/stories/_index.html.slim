@@ -1,0 +1,28 @@
+table.table.striped.table-hover
+  thead
+    tr
+      th Name
+      th State
+      th Story Type
+      th Owner
+      th Comments
+      th Task
+      th Actions
+  tbody
+    - @stories.each do |story|
+      tr
+        td.project.name
+          = link_to story.name, edit_project_story_path(story.project, story)
+        td.project.state
+          = story.state
+        td.project.story_type
+          = story.story_type
+        td.project.story.owner
+          = story.owner_id
+        td.project.story.comments
+          = story.comments_count
+        td.project.story.tasks
+          = story.tasks_count
+        td.project.actions
+          = link_to next_button_name(story), project_story_path(story.project, story, story: { state: next_story_state(story)}), method: :put, class: next_button_class(story)
+          = link_to 'x', project_story_path(story.project, story), method: :delete, class: 'btn btn-danger', data: { confirm: "Are you sure to delete #{story.name}?" }

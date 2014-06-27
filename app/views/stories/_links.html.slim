@@ -1,0 +1,7 @@
+= link_to 'Current', current_project_stories_path(@project), class: 'btn btn-info'
+= link_to 'Backlog', backlog_project_stories_path(@project), class: 'btn btn-info'
+= link_to 'Icebox', icebox_project_stories_path(@project), class: 'btn btn-info'
+= link_to 'Done', done_project_stories_path(@project), class: 'btn btn-info'
+= link_to 'Add New Story', new_project_story_path(@project), class: 'btn btn-primary'
+= link_to 'Members', project_members_path(@project), class: 'btn btn-primary'
+= link_to 'Dashboard', projects_path, class: 'btn btn-danger'
