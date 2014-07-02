@@ -6,7 +6,7 @@
   .span2.well
     = link_to project.name, current_project_stories_path(project), class: 'btn btn-info'
     hr
-    | activities
+    = render_activities get_recent_activities(project)
     hr
     = link_to 'Edit', edit_project_path(project), class: 'btn btn-primary'
     = link_to 'Delete', project_path(project), method: :delete, class: 'btn btn-danger', data: { confirm: "Are you sure to delete #{project.name}?" }

@@ -1,22 +1,17 @@
 Rails.application.routes.draw do
-  resources :posts
-
-  # match ':controller(/:action(/:id))', :via => :get
-
   authenticated :user do
     root :to => 'projects#index', as: :authenticated_root
   end
+
   root :to => 'home#index'
-5
-  #FIXME zmienic scieżki
-  # devise_for :users
-  devise_for :users
+
+  devise_for :users, controllers: { confirmations: 'confirmations' }
 
   get 'members/confirm/:token' => 'members#confirm', as: 'confirm_member'
 
-  resources :projects do
-    resources :members
-    resources :stories do
+  resources :projects, only: [:index, :new, :edit, :create, :update, :destroy] do
+    resources :members, only: [:index, :show, :new, :edit, :create, :update, :destroy]
+    resources :stories, only: [:show, :new, :edit, :create, :update, :destroy] do
       get :current, :backlog, :icebox, :done, on: :collection
     end
   end

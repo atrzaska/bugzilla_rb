@@ -16,10 +16,9 @@
     .controls
       = f.select :story_type, %w'feature bug chore release'
   .control-group
-    /= f.select :owner_id, @project.members.map { |m| m.user.email }
     = f.label :owner_id, nil, class: 'control-label'
     .controls
-      = f.text_field :owner_id
+      = f.select :owner_id, get_registered_members(@project).map { |m| [m.user.email, m.user.id] }
   .control-group
     = f.label :container, nil, class: 'control-label'
     .controls

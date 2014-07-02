@@ -1,4 +1,6 @@
 class Story < ActiveRecord::Base
+  include PublicActivity::Common
+
   belongs_to :project
   has_many :tasks
   has_many :comments

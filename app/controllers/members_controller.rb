@@ -18,6 +18,7 @@ class MembersController < ApplicationController
 
     if @member.save
       MemberMailer.send_activation_instructions(@member).deliver
+      create_activity :new
       redirect_to project_members_url(@project), notice: 'Member was successfully created.'
     else
       render action: 'new'
@@ -26,6 +27,7 @@ class MembersController < ApplicationController
 
   def update
     if @member.update(member_params)
+      create_activity :update
       redirect_to project_members_url(@project), notice: 'Member was successfully updated.'
     else
       render action: 'edit'
@@ -34,21 +36,33 @@ class MembersController < ApplicationController
 
   def destroy
     @member.destroy
+    create_activity :destroy
     redirect_to project_members_url
   end
 
   def confirm
-    @member = Member.find_by_token(params[:token])
-    user = User.find_by_email(@member.email)
+    member = Member.find_by_token(params[:token])
+    member.update(confirmed: true)
+    create_activity :confirm
+
+    user = User.find_by_email(member.email)
 
     if user.present?
-      @member.update(user: user, confirmed: true)
+      member.update(user: user)
     end
 
-    redirect_to project_url(@member.project)
+    if user != current_user
+      sign_out_and_redirect(project_url(member.project)) and return
+    end
+
+    redirect_to project_url(member.project)
   end
 
-private
+  private
+  def create_activity(action)
+    @member.create_activity action, owner: current_user, recipient: @project
+  end
+
   def get_project
     @project = current_user.projects.find(params[:project_id])
   end

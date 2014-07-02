@@ -17,9 +17,11 @@ gem 'turbolinks', '2.2.1'
 gem 'jbuilder', '~> 1.2'
 gem 'slim-rails', '2.1.5'
 
-gem 'therubyracer'
+gem 'therubyracer', '0.12.1'
 gem 'less-rails' #Sprockets (what Rails 3.1 uses for its asset pipeline) supports LESS
 gem 'twitter-bootstrap-rails', '2.2.8'
+
+gem 'public_activity', '1.4.1'
 
 group :staging, :production do
   gem 'rails_12factor'
@@ -27,9 +29,9 @@ group :staging, :production do
 end
 
 group :development do
-  gem 'thin'
-  gem 'better_errors'
-  gem 'binding_of_caller'
+  gem 'thin', '1.6.2'
+  gem 'better_errors', '1.1.0'
+  gem 'binding_of_caller', '0.7.2'
 end
 
 group :test do
@@ -48,5 +50,5 @@ group :test do
 end
 
 group :doc do
-  gem 'sdoc', require: false
+  gem 'sdoc', '0.4.0', require: false
 end
