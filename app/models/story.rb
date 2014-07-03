@@ -30,4 +30,8 @@ class Story < ActiveRecord::Base
   scope :icebox, -> { where(state: STATE_UNSTARTED, container: CONTAINER_ICEBOX)}
   scope :backlog, -> { where(state: STATE_UNSTARTED, container: CONTAINTER_BACKLOG)}
   scope :done, -> { where(state: STATE_ACCEPTED)}
+
+  def byleco
+    
+  end
 end
