@@ -17,9 +17,9 @@ class Story < ActiveRecord::Base
                   CONTAINTER_BACKLOG = 'backlog'.freeze].freeze
 
   belongs_to :project
+  belongs_to :owner, class_name: 'User', foreign_key: :owner_id
   has_many :tasks
   has_many :comments
-  belongs_to :owner, class_name: 'User', foreign_key: :owner_id
 
   validates :name, :description, presence: true
   validates :state, inclusion: { in: [STATE_UNSTARTED, STATE_STARTED, STATE_FINISHED, STATE_DELIVERED, STATE_ACCEPTED, STATE_REJECTED]}
@@ -30,8 +30,4 @@ class Story < ActiveRecord::Base
   scope :icebox, -> { where(state: STATE_UNSTARTED, container: CONTAINER_ICEBOX)}
   scope :backlog, -> { where(state: STATE_UNSTARTED, container: CONTAINTER_BACKLOG)}
   scope :done, -> { where(state: STATE_ACCEPTED)}
-
-  def byleco
-    
-  end
 end
