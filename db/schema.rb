@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140627094424) do
+ActiveRecord::Schema.define(version: 20140703113959) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -41,17 +41,6 @@ ActiveRecord::Schema.define(version: 20140627094424) do
   end
 
   add_index "comments", ["story_id"], name: "index_comments_on_story_id", using: :btree
-
-  create_table "invitations", force: true do |t|
-    t.string   "email"
-    t.string   "token"
-    t.boolean  "flag"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer  "project_id"
-  end
-
-  add_index "invitations", ["project_id"], name: "index_invitations_on_project_id", using: :btree
 
   create_table "members", force: true do |t|
     t.string   "name"
@@ -91,10 +80,11 @@ ActiveRecord::Schema.define(version: 20140627094424) do
   add_index "stories", ["project_id"], name: "index_stories_on_project_id", using: :btree
 
   create_table "tasks", force: true do |t|
-    t.string   "task"
+    t.string   "text"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "story_id"
+    t.boolean  "complete"
   end
 
   add_index "tasks", ["story_id"], name: "index_tasks_on_story_id", using: :btree

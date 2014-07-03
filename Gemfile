@@ -27,6 +27,9 @@ gem 'twitter-bootstrap-rails', '2.2.8'
 gem 'public_activity', '1.4.1'
 gem 'validates_email_format_of', '1.5.3'
 gem 'html5_validators', '1.1.2'
+gem 'friendly_id', '5.0.4'
+gem 'rabl', '0.10.1'
+gem 'oj', '2.9.8'
 
 group :staging, :production do
   gem 'rails_12factor', '0.0.2'

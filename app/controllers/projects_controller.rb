@@ -34,8 +34,8 @@ class ProjectsController < ApplicationController
   end
 
   def destroy
-    @project.destroy
     create_activity :destroy
+    @project.destroy
     redirect_to current_project_stories_url(@project)
   end
 

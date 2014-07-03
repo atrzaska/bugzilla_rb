@@ -9,6 +9,10 @@ Rails.application.routes.draw do
 
   get 'members/confirm/:token' => 'members#confirm', as: 'confirm_member'
 
+
+  resources :comments, only: [:new, :edit, :create, :update, :destroy]
+  resources :tasks, only: [:new, :edit, :create, :update, :destroy]
+
   resources :projects, only: [:index, :new, :edit, :create, :update, :destroy] do
     resources :members, only: [:index, :show, :new, :edit, :create, :update, :destroy]
     resources :stories, only: [:show, :new, :edit, :create, :update, :destroy] do

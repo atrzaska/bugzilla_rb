@@ -2,7 +2,7 @@
   - if @member.errors.any?
     .alert.alert-error
       button.close data-dismiss="alert" type="button"  &times;
-      p #{pluralize(@member.errors.count, "error")} prohibited this task from being saved:
+      p #{pluralize(@member.errors.count, "error")} prohibited this member from being saved:
       ul
         - @member.errors.full_messages.each do |message|
           li=message

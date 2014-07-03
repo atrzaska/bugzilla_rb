@@ -1,0 +1,23 @@
+= form_for @task, html: { class: 'form-horizontal' } do |f|
+  - if @task.errors.any?
+    .alert.alert-error
+      button.close data-dismiss="alert" type="button"  &times;
+      p #{pluralize(@story.errors.count, "error")} prohibited this task from being saved:
+      ul
+        - @task.errors.full_messages.each do |message|
+          li=message
+
+  .control-group
+    = f.label :text, nil, class: 'control-label'
+    .controls
+      = f.text_field :text, placeholder: 'Task text'
+  .control-group
+    = f.label :complete, nil, class: 'control-label'
+    .controls
+      = f.check_box :complete
+  .control-group
+    .controls
+      = f.submit class: 'btn btn-primary'
+  .control-group
+    .controls
+      = link_to 'Back', edit_project_story_path(@project, @story), class: 'btn btn-danger'

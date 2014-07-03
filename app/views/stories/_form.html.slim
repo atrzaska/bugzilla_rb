@@ -2,7 +2,7 @@
   - if @story.errors.any?
     .alert.alert-error
       button.close data-dismiss="alert" type="button"  &times;
-      p #{pluralize(@story.errors.count, "error")} prohibited this task from being saved:
+      p #{pluralize(@story.errors.count, "error")} prohibited this story from being saved:
       ul
         - @story.errors.full_messages.each do |message|
           li=message

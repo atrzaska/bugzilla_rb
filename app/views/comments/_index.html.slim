@@ -1,0 +1,7 @@
+table
+  - @story.comments.each do |comment|
+    tr
+      td
+        |  #{link_to comment.text, edit_comment_path(comment)}
+      td
+        | #{link_to 'x', comment_path(comment), method: :delete, class: 'btn btn-danger btn-mini', data: { confirm: "Are you sure to delete this comment?" }}

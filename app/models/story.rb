@@ -26,8 +26,8 @@ class Story < ActiveRecord::Base
   validates :story_type, inclusion: { in: [STORY_TYPE_FEATURE, STORY_TYPE_BUG, STORY_TYPE_CHORE, STORY_TYPE_RELEASE]}
   validates :container, inclusion: { in: [CONTAINER_ICEBOX, CONTAINTER_BACKLOG]}
 
-  scope :current, -> { where(state: [STATE_STARTED STATE_FINISHED STATE_DELIVERED STATE_REJECTED])}
-  scope :icebox, -> { where(state: STATE_UNSTARTED, container: CONTAINER_ICEBOX)}
-  scope :backlog, -> { where(state: STATE_UNSTARTED, container: CONTAINTER_BACKLOG)}
-  scope :done, -> { where(state: STATE_ACCEPTED)}
+  scope :current, -> {where(state: [STATE_STARTED, STATE_FINISHED, STATE_DELIVERED, STATE_REJECTED])}
+  scope :icebox, -> {where(state: STATE_UNSTARTED, container: CONTAINER_ICEBOX)}
+  scope :backlog, -> {where(state: STATE_UNSTARTED, container: CONTAINTER_BACKLOG)}
+  scope :done, -> {where(state: STATE_ACCEPTED)}
 end

@@ -35,8 +35,8 @@ class MembersController < ApplicationController
   end
 
   def destroy
-    @member.destroy
     create_activity :destroy
+    @member.destroy
     redirect_to project_members_url
   end
 

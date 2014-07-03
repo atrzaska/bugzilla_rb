@@ -1,0 +1,13 @@
+table
+  - @story.tasks.each do |task|
+    tr
+      td
+        p
+          - if task.complete.present?
+            i.icon-ok
+          - else
+            i.icon-remove
+          |  #{link_to task.text, edit_task_path(task)}
+
+      td
+        | #{link_to 'x', task_path(task), method: :delete, class: 'btn btn-danger btn-mini', data: { confirm: "Are you sure to delete this task?" }}
