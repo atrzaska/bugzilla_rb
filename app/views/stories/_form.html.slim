@@ -1,4 +1,12 @@
 = form_for [@project, @story], html: { class: 'form-horizontal' } do |f|
+  - if @story.errors.any?
+    .alert.alert-error
+      button.close data-dismiss="alert" type="button"  &times;
+      p #{pluralize(@story.errors.count, "error")} prohibited this task from being saved:
+      ul
+        - @story.errors.full_messages.each do |message|
+          li=message
+
   .control-group
     = f.label :name, nil, class: 'control-label'
     .controls
@@ -6,7 +14,7 @@
   .control-group
     = f.label :state, nil, class: 'control-label'
     .controls
-      = f.select :state, %w'unstarted started finished delievered accepted rejected'
+      = f.select :state, [Story::STATE_UNSTARTED, Story::STATE_STARTED, Story::STATE_FINISHED, Story::STATE_DELIVERED, Story::STATE_ACCEPTED, Story::STATE_REJECTED]
   .control-group
     = f.label :description, nil, class: 'control-label'
     .controls
@@ -14,7 +22,7 @@
   .control-group
     = f.label :story_type, nil, class: 'control-label'
     .controls
-      = f.select :story_type, %w'feature bug chore release'
+      = f.select :story_type, [Story::STORY_TYPE_FEATURE, Story::STORY_TYPE_BUG, Story::STORY_TYPE_CHORE, Story::STORY_TYPE_RELEASE]
   .control-group
     = f.label :owner_id, nil, class: 'control-label'
     .controls
@@ -22,7 +30,7 @@
   .control-group
     = f.label :container, nil, class: 'control-label'
     .controls
-      = f.select :container, %w'icebox backlog'
+      = f.select :container, [Story::CONTAINER_ICEBOX, Story::CONTAINTER_BACKLOG]
   .control-group
     .controls
       = f.submit class: 'btn btn-primary'

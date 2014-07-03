@@ -4,4 +4,6 @@ class Project < ActiveRecord::Base
   has_many :stories
   has_many :members
   has_many :users, through: :members
+
+  validates :name, presence: true
 end

@@ -1,4 +1,12 @@
 = form_for @project, html: { class: 'form-horizontal' } do |f|
+  - if @project.errors.any?
+    .alert.alert-error
+      button.close data-dismiss="alert" type="button"  &times;
+      p #{pluralize(@project.errors.count, "error")} prohibited this task from being saved:
+      ul
+        - @project.errors.full_messages.each do |message|
+          li=message
+
   .control-group
     = f.label :name, nil, class: 'control-label'
     .controls

@@ -4,6 +4,9 @@ class Member < ActiveRecord::Base
   belongs_to :project
   belongs_to :user
 
+  validates :name, :email, presence: true
+  validates :email, email_format: {}
+
   scope :confirmed, where(confirmed: true)
 
   private

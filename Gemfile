@@ -1,10 +1,13 @@
 source 'https://rubygems.org'
 
+# ruby and rails
 ruby '2.1.2'
 gem 'rails', '4.1.1'
 
+# postgres db
 gem 'pg', '0.17.1'
 
+# devise
 gem 'devise', '3.2.3'
 
 # Use SCSS for stylesheets
@@ -12,7 +15,7 @@ gem 'sass-rails', '~> 4.0.0'
 gem 'kaminari', '0.15.1'
 gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.0.0'
-gem 'jquery-rails'
+gem 'jquery-rails', '3.1.0'
 gem 'turbolinks', '2.2.1'
 gem 'jbuilder', '~> 1.2'
 gem 'slim-rails', '2.1.5'
@@ -22,10 +25,12 @@ gem 'less-rails' #Sprockets (what Rails 3.1 uses for its asset pipeline) support
 gem 'twitter-bootstrap-rails', '2.2.8'
 
 gem 'public_activity', '1.4.1'
+gem 'validates_email_format_of', '1.5.3'
+gem 'html5_validators', '1.1.2'
 
 group :staging, :production do
-  gem 'rails_12factor'
-  gem 'unicorn'
+  gem 'rails_12factor', '0.0.2'
+  gem 'unicorn', '4.8.3'
 end
 
 group :development do
