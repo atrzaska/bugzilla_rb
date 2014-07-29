@@ -1,6 +1,7 @@
 class CommentsController < ApplicationController
   before_action :set_comment, only: [:show, :edit, :update, :destroy]
   before_action :get_story, only: [:show, :edit, :update, :destroy]
+  before_action :get_story_create, only: [:new, :create]
 
   def new
     @comment = @story.comments.new
@@ -49,11 +50,16 @@ class CommentsController < ApplicationController
     @project = @story.project
   end
 
+  def get_story_create
+    @story = Story.find session[:current_story_id]
+    @project = @story.project
+  end
+
   def comment_params
     params.require(:comment).permit(:text)
   end
 
   def validate_resource_access
-    raise("not authorized") unless @project.in? current_user.projects
+    raise('not authorized') unless @project.in? current_user.projects
   end
 end

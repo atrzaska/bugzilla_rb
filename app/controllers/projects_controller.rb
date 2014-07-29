@@ -3,7 +3,7 @@ class ProjectsController < ApplicationController
   after_action :add_me_to_project, only: :create
 
   def index
-    @projects = current_user.projects.order('created_at asc').where('members.confirmed is true').page(params[:page]).per(8)
+    @projects = current_user.projects.order(created_at: :desc).where('members.confirmed is true').page(params[:page]).per(8)
   end
 
   def new

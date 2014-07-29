@@ -1,6 +1,7 @@
 class TasksController < ApplicationController
   before_action :set_task, only: [:show, :edit, :update, :destroy]
   before_action :get_story, only: [:show, :edit, :update, :destroy]
+  before_action :get_story_create, only: [:new, :create]
 
   def new
     @task = @story.tasks.new
@@ -46,6 +47,11 @@ class TasksController < ApplicationController
 
   def get_story
     @story = @task.story
+    @project = @story.project
+  end
+
+  def get_story_create
+    @story = Story.find session[:current_story_id]
     @project = @story.project
   end
 

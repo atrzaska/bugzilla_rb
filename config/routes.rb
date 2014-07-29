@@ -9,7 +9,6 @@ Rails.application.routes.draw do
 
   get 'members/confirm/:token' => 'members#confirm', as: 'confirm_member'
 
-
   resources :comments, only: [:new, :edit, :create, :update, :destroy]
   resources :tasks, only: [:new, :edit, :create, :update, :destroy]
 

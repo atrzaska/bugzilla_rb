@@ -10,6 +10,7 @@ class StoriesController < ApplicationController
   end
 
   def edit
+    session[:current_story_id] = @story.id
   end
 
   def create

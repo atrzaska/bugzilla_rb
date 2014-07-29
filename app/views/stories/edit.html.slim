@@ -3,6 +3,8 @@
 .span3
   h1 Comments
   = render 'comments/index'
+  = link_to 'Add Comment', new_comment_path, class: 'btn btn-primary btn-small'
 .span3
   h1 Tasks
   = render 'tasks/index'
+  = link_to 'Add Task', new_task_path, class: 'btn btn-primary btn-small'

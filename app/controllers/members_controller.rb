@@ -47,9 +47,7 @@ class MembersController < ApplicationController
 
     user = User.find_by_email(member.email)
 
-    if user.present?
-      member.update(user: user)
-    end
+    member.update(user: user) if user.present?
 
     if user != current_user
       sign_out_and_redirect(project_url(member.project)) and return
