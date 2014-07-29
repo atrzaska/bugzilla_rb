@@ -1,19 +1,24 @@
 module StoriesHelper
   def story_actions(story)
+    next_links = case story.state
+       when 'unstarted'
+         [{ status: 'started', color: :default }]
+       when 'started'
+         [{ status: 'finished', color: :primary }]
+       when 'finished'
+         [{ status: 'delivered', color: :primary }]
+       when 'delivered'
+         [{ status: 'accepted', color: :primary }, { status: 'Rejected', color: :primary }]
+       when 'rejected'
+         [{ status: 'unstarted', color: :primary }]
+     end
+
     links = []
-      case story.state
-        when 'unstarted'
-         links << link_to('Started', project_story_path(story.project, story, story: { state: 'started'}), method: :put, class: 'btn btn-default')
-        when 'started'
-          links << link_to('Finished', project_story_path(story.project, story, story: { state: 'finished'}), method: :put, class: 'btn btn-primary')
-        when 'finished'
-          links << link_to('Delivered', project_story_path(story.project, story, story: { state: 'delivered'}), method: :put, class: 'btn btn-warning')
-        when 'delivered'
-          links << link_to('Accepted', project_story_path(story.project, story, story: { state: 'accepted'}), method: :put, class: 'btn btn-success')
-          links << link_to('Rejected', project_story_path(story.project, story, story: { state: 'rejected'}), method: :put, class: 'btn btn-danger')
-        when 'rejected'
-          links << link_to('Unstarted', project_story_path(story.project, story, story: { state: 'unstarted'}), method: :put, class: 'btn btn-danger')
-      end
+
+    next_links.each_with_object(links) do |link, obj|
+      obj << link_to(link[:status], project_story_path(story.project, story, story: { state: link[:status]}), method: :put, class: "btn btn-#{link[:color]}")
+    end
+
     links << link_to('x', project_story_path(story.project, story), method: :delete, class: 'btn btn-danger', data: { confirm: "Are you sure to delete #{story.name}?" })
     links.join('').html_safe
   end
