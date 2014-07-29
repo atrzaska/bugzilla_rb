@@ -60,6 +60,6 @@ class TasksController < ApplicationController
   end
 
   def validate_resource_access
-    raise("not authorized") unless @project.in? current_user.projects
+    raise('not authorized') unless @project.in? current_user.projects
   end
 end
