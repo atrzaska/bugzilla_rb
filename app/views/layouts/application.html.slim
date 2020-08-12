@@ -1,15 +1,18 @@
 doctype html
-html
+
+html lang='en'
   head
-    title Bugzilla
+    meta charset='utf-8'
+    meta content='width=device-width, initial-scale=1, shrink-to-fit=no' name='viewport'
+    link href='https://stackpath.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css' rel='stylesheet'
     = stylesheet_link_tag    'application', media: 'all'
-    /![if lt IE 9]><script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script><![endif]
     = csrf_meta_tags
+    title Bugzilla
   body
     .navbar.navbar-fixed-top.navbar-inverse
       .navbar-inner
         .container
-          a.btn.btn-navbar data-target=".nav-collapse" data-toggle="collapse"
+          a.btn.btn-navbar data-target='.nav-collapse' data-toggle='collapse'
             span.icon-bar
             span.icon-bar
             span.icon-bar
@@ -28,13 +31,17 @@ html
     .container id='content'
       - if flash[:alert]
         .alert.alert-error
-          button.close data-dismiss="alert" type="button"  &times;
+          button.close data-dismiss='alert' type='button'  &times;
           = flash[:alert]
       - if flash[:notice]
         .alert
-          button.close data-dismiss="alert" type="button"  &times;
+          button.close data-dismiss='alert' type='button'  &times;
           = flash[:notice]
       .row= yield
       .footer
         | Copyright (c) 2014 Andrzej Trzaska
+    script src='https://code.jquery.com/jquery-3.5.1.min.js'
+    script src='https://stackpath.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js'
+    script src='https://cdnjs.cloudflare.com/ajax/libs/jquery-ujs/1.2.2/rails.min.js'
     = javascript_include_tag 'application'
+
