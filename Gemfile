@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 gem 'rails', '~> 4'
 gem 'pg', '~> 0.18.0'
-gem 'devise', '~> 3'
+gem 'devise', '~> 4'
 gem 'sass-rails', '~> 4'
 gem 'kaminari', '~> 1'
 gem 'slim-rails', '~> 3'
