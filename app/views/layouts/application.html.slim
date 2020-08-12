@@ -2,7 +2,7 @@ doctype html
 html
   head
     title Bugzilla
-    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
+    = stylesheet_link_tag    'application', media: 'all'
     /![if lt IE 9]><script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script><![endif]
     = csrf_meta_tags
   body
@@ -37,4 +37,4 @@ html
       .row= yield
       .footer
         | Copyright (c) 2014 Andrzej Trzaska
-    = javascript_include_tag 'application', 'data-turbolinks-track' => true
+    = javascript_include_tag 'application'

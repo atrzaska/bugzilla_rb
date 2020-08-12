@@ -1,0 +1,15 @@
+version: "3"
+
+services:
+  postgres:
+    image: postgres:9.4-alpine
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_DB: bugzilla_development
+      POSTGRES_PASSWORD: postgres
+  mailcatcher:
+    image: joshdvir/alpine-mailcatcher:latest
+    ports:
+      - "1025:1025"
+      - "1080:1080"

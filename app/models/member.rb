@@ -7,7 +7,7 @@ class Member < ActiveRecord::Base
   validates :name, :email, presence: true
   validates :email, email_format: {}
 
-  scope :confirmed, where(confirmed: true)
+  scope :confirmed, -> { where(confirmed: true) }
 
   private
   def generate_token
