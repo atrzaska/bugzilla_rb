@@ -18,7 +18,7 @@ class StoriesController < ApplicationController
 
     if @story.save
       create_activity :new
-      redirect_to [@project, @story], notice: 'Story was successfully created.'
+      redirect_to icebox_project_stories_url(@project), notice: 'Story was successfully created.'
     else
       render action: 'new'
     end
