@@ -41,19 +41,19 @@ class MembersController < ApplicationController
   end
 
   def confirm
-    member = Member.find_by_token(params[:token])
-    member.update(confirmed: true)
+    @member = Member.find_by_token(params[:token])
+    @member.update(confirmed: true)
     create_activity :confirm
 
-    user = User.find_by_email(member.email)
+    user = User.find_by_email(@member.email)
 
-    member.update(user: user) if user.present?
+    @member.update(user: user) if user.present?
 
     if user != current_user
-      sign_out_and_redirect(project_url(member.project)) and return
+      sign_out_and_redirect(project_url(@member.project)) and return
     end
 
-    redirect_to project_url(member.project)
+    redirect_to project_url(@member.project)
   end
 
   private

@@ -1,4 +1,6 @@
 class Member < ActiveRecord::Base
+  include PublicActivity::Common
+
   before_create :generate_token
 
   belongs_to :project
